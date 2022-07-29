@@ -8,4 +8,13 @@
 
 - Agregar contacto,
 - Modificar contacto,
+- Eliminar contacto,
 - Buscar contacto.
+- Utilizar API JSON-Server: https://github.com/tyicode/json-server
+  **-- Instalación JSON-Server:**
+
+`npm install -g json-server`
+
+**-- Creación de la base de datos:**
+
+`json-server dataBaseName.json`
