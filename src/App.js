@@ -1,6 +1,7 @@
 import react from "react";
 import "./App.css";
 import Header from "./components/Header/Header";
+import AddContact from "./components/AddContact/AddContact";
 import Contact from "./components/Contacts/Contact";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -24,7 +25,7 @@ function App() {
   return (
     <div>
       <Header />
-      <h4>Contact List</h4>
+      <AddContact />
       <Contact contact={contacts} />
     </div>
   );
