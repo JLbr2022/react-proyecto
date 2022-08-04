@@ -1,7 +1,13 @@
+// import React, { useEffect, useReducer, useState } from "react";
 import React from "react";
+import DelContact from "../DelContact/DelContact";
 import { Table, Button, ButtonGroup } from "reactstrap";
 
-const Contact = ({ contact }) => {
+const Contact = ({ contact, id }) => {
+  function ModContact(id) {
+    console.log("MODDED");
+  }
+
   return (
     <div className="container">
       <Table hover striped responsive>
@@ -21,8 +27,8 @@ const Contact = ({ contact }) => {
               <td>{contact.phone}</td>
               <td>
                 <ButtonGroup>
-                  <Button>MOD</Button>
-                  <Button>DEL</Button>
+                  <Button onClick={() => ModContact(contact.id)}>MOD</Button>
+                  <Button onClick={() => DelContact(contact.id)}>DEL</Button>
                 </ButtonGroup>
               </td>
             </tr>
