@@ -40,7 +40,12 @@ const Contact = ({ contact, id }) => {
 
   return (
     <div className="container">
-      <AddContact onSubmit={handleSubmit} />
+      <AddContact
+        onSubmit={handleSubmit}
+        isUpdate={isUpdate}
+        nameup={name}
+        phoneup={phone}
+      />
       <Table className="mt-4" size="md" bordered hover responsive>
         <thead>
           <tr>
@@ -50,9 +55,9 @@ const Contact = ({ contact, id }) => {
             <th>Actions</th>
           </tr>
         </thead>
-        {contact.map((contact, index) => (
-          <tbody key={index}>
-            <tr>
+        <tbody>
+          {contact.map((contact, index) => (
+            <tr key={index}>
               <td>{contact.id}</td>
               <td>{contact.name}</td>
               <td>{contact.phone}</td>
@@ -69,8 +74,8 @@ const Contact = ({ contact, id }) => {
                 </ButtonGroup>
               </td>
             </tr>
-          </tbody>
-        ))}
+          ))}
+        </tbody>
       </Table>
     </div>
   );

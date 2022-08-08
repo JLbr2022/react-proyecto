@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Container,
   Row,
@@ -10,10 +10,9 @@ import {
   Button,
 } from "reactstrap";
 
-import { useState } from "react";
 // import Fetchdb from "../Fetchdb/Fetchdb";
 
-function AddContact({ onUpdate }) {
+function AddContact({ onUpdate, isUpdate, nameup, phoneup }) {
   // console.log(
   //   "🚀 ~ file: AddContact.js ~ line 17 ~ AddContact ~ onUpdate",
   //   onUpdate
@@ -22,6 +21,13 @@ function AddContact({ onUpdate }) {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [isPending, setIsPending] = useState(false);
+
+  useEffect(() => {
+    if (isUpdate) {
+      setName(nameup);
+      setPhone(parseInt(phoneup));
+    }
+  }, [isUpdate, nameup, phoneup]);
 
   function handleNewReg(e) {
     e.preventDefault();
