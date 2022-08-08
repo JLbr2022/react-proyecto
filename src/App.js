@@ -3,21 +3,17 @@ import "./App.css";
 import Header from "./components/Header/Header";
 import AddContact from "./components/AddContact/AddContact";
 import Contact from "./components/Contacts/Contact";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 // import Fetchdb from "./components/Fetchdb/Fetchdb";
-
-
-
-
 
 function App() {
   const url = "http://localhost:4000/contacts";
   const [contacts, setContacts] = useState([]);
-  
+
   const fetchContacts = async () => {
     fetch(url)
-    .then((response) => response.json())
-    .then((data) => setContacts(data));
+      .then((response) => response.json())
+      .then((data) => setContacts(data));
   };
 
   useEffect(() => {
@@ -30,7 +26,7 @@ function App() {
   return (
     <div>
       <Header />
-      <AddContact />
+      {/* <AddContact /> */}
       <Contact contact={contacts} />
       {/* <DelContact /> */}
     </div>

@@ -13,7 +13,12 @@ import {
 import { useState } from "react";
 // import Fetchdb from "../Fetchdb/Fetchdb";
 
-function AddContact() {
+function AddContact({ onUpdate }) {
+  // console.log(
+  //   "🚀 ~ file: AddContact.js ~ line 17 ~ AddContact ~ onUpdate",
+  //   onUpdate
+  // );
+
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [isPending, setIsPending] = useState(false);
@@ -21,6 +26,7 @@ function AddContact() {
   function handleNewReg(e) {
     e.preventDefault();
     const newContact = { name, phone };
+
     // e.target.name.value = " ";
     // e.phone.value = 0;
 
@@ -31,24 +37,22 @@ function AddContact() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newContact),
     }).then(() => {
-      console.warn("ADDED ", newContact);
+      console.warn("CONTACT ADDED ", newContact);
       setIsPending(false);
     });
-    // Fetchdb(); x cvf rfhgt6ju67g
   }
-
   return (
     <Container>
-      {/* <h3>New Contact</h3> */}
-      <Form inline onSubmit={handleNewReg}>
+      <Form className="mt-4" inline onSubmit={handleNewReg}>
         <Row>
           <Col>
             <FormGroup floating>
               <Input
                 id="contactEmail"
-                name="email"
+                name="name"
                 placeholder="contact name"
                 type="text"
+                value={name}
                 onChange={(e) => setName(e.target.value)}
               />
               <Label for="exampleEmail">Name</Label>
@@ -60,6 +64,7 @@ function AddContact() {
               <Input
                 id="contactPhone"
                 name="phone"
+                value={phone}
                 placeholder="contact phone"
                 type="number"
                 onChange={(e) => setPhone(e.target.value)}
@@ -69,12 +74,12 @@ function AddContact() {
           </Col>
         </Row>{" "}
         {!isPending && (
-          <Button block type="submit">
+          <Button block type="submit" className="mt-2">
             Add Contact
           </Button>
         )}
         {isPending && (
-          <Button block type="submit" disabled>
+          <Button block type="submit" disabled className="mt-2">
             Saving...
           </Button>
         )}
