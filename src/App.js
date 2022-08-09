@@ -9,6 +9,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 function App() {
   const url = "http://localhost:4000/contacts";
   const [contacts, setContacts] = useState([]);
+  const [formBotton, setFormBotton] = useState("");
 
   const fetchContacts = async () => {
     fetch(url)
@@ -22,12 +23,12 @@ function App() {
   // useEffect(() => {
   //   Fetchdb();
   // }, []);
-
+  setFormBotton.value = "Add";
   return (
     <div>
       <Header />
       {/* <AddContact /> */}
-      <Contact contact={contacts} />
+      <Contact contact={contacts} setFormBotton={setFormBotton} />
       {/* <DelContact /> */}
     </div>
   );

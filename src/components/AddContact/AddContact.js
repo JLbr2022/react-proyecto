@@ -12,7 +12,7 @@ import {
 
 // import Fetchdb from "../Fetchdb/Fetchdb";
 
-function AddContact({ onUpdate, isUpdate, nameup, phoneup }) {
+function AddContact({ onUpdate, isUpdate, nameup, phoneup, setFormBotton }) {
   // console.log(
   //   "🚀 ~ file: AddContact.js ~ line 17 ~ AddContact ~ onUpdate",
   //   onUpdate
@@ -21,17 +21,36 @@ function AddContact({ onUpdate, isUpdate, nameup, phoneup }) {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [isPending, setIsPending] = useState(false);
+  // const [formBottom, setFormBotton] = useState("Add"); // true = add contact, false = update contact
+
+  const handleUpdate = async (contactId) => {
+    // e.preventDefault();
+    setIsPending(true);
+
+    const response = await fetch(`http://localhost:4000/contacts/${isUpdate}`, {
+      method: "PATCH",
+      body: JSON.stringify({
+        name: name,
+        phone: phone,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  };
 
   useEffect(() => {
     if (isUpdate) {
       setName(nameup);
       setPhone(parseInt(phoneup));
+      setFormBotton.value = "Save";
     }
   }, [isUpdate, nameup, phoneup]);
 
   function handleNewReg(e) {
     e.preventDefault();
     const newContact = { name, phone };
+    setFormBotton.value = "Add";
 
     // e.target.name.value = " ";
     // e.phone.value = 0;
@@ -49,7 +68,11 @@ function AddContact({ onUpdate, isUpdate, nameup, phoneup }) {
   }
   return (
     <Container>
-      <Form className="mt-4" inline onSubmit={handleNewReg}>
+      <Form
+        className="mt-4"
+        inline
+        onSubmit={!isUpdate ? handleNewReg : handleUpdate}
+      >
         <Row>
           <Col>
             <FormGroup floating>
@@ -61,11 +84,10 @@ function AddContact({ onUpdate, isUpdate, nameup, phoneup }) {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
-              <Label for="exampleEmail">Name</Label>
+              <Label for="exampleName">Name</Label>
             </FormGroup>
           </Col>{" "}
           <Col>
-            {/* <FormGroup className="mb-2 me-sm-2 mb-sm-0"> */}
             <FormGroup floating>
               <Input
                 id="contactPhone"
@@ -75,13 +97,13 @@ function AddContact({ onUpdate, isUpdate, nameup, phoneup }) {
                 type="number"
                 onChange={(e) => setPhone(e.target.value)}
               />
-              <Label for="examplePassword">Phone</Label>
+              <Label for="examplePhone">Phone</Label>
             </FormGroup>
           </Col>
         </Row>{" "}
         {!isPending && (
           <Button block type="submit" className="mt-2">
-            Add Contact
+            {setFormBotton.value}
           </Button>
         )}
         {isPending && (

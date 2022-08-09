@@ -5,12 +5,14 @@ import AddContact from "../AddContact/AddContact";
 import Modal from "../Modal/Modal"; // currently in construction
 import { Table, Button, ButtonGroup, From } from "reactstrap";
 
-const Contact = ({ contact, id }) => {
+const Contact = ({ contact, id, setFormBotton }) => {
+  // console.log(setFormBotton.value);
   const [name, setName] = useState();
   const [phone, setPhone] = useState();
   const [contacId, setContactId] = useState();
-  const [isUpdate, setIsUpdate] = useState();
-  let setHandle = false;
+  const [isUpdate, setIsUpdate] = useState(false);
+
+  // let setHandle = false;
 
   const handleSubmit = (e) => {
     // <Modal />;
@@ -26,6 +28,7 @@ const Contact = ({ contact, id }) => {
         setPhone(contact.phone);
         console.log("🚀 ~ file: Contact.js ~ line 22 ~ .then ~ data", contact);
       });
+    return (setFormBotton.value = "Add");
   };
 
   const handleModal = (setHandle) => {
@@ -41,11 +44,12 @@ const Contact = ({ contact, id }) => {
   return (
     <div className="container">
       <AddContact
-        onSubmit={handleSubmit}
         isUpdate={isUpdate}
         nameup={name}
         phoneup={phone}
+        setFormBotton={setFormBotton}
       />
+
       <Table className="mt-4" size="md" bordered hover responsive>
         <thead>
           <tr>
