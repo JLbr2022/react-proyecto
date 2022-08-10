@@ -4,9 +4,9 @@ import DelContact from "../DelContact/DelContact";
 import AddContact from "../AddContact/AddContact";
 import Modal from "../Modal/Modal"; // currently in construction
 import { Table, Button, ButtonGroup, From } from "reactstrap";
+import Header from "../Header/Header";
 
 const Contact = ({ contact, id, setFormBotton }) => {
-  // console.log(setFormBotton.value);
   const [name, setName] = useState();
   const [phone, setPhone] = useState();
   const [contacId, setContactId] = useState();
@@ -14,10 +14,10 @@ const Contact = ({ contact, id, setFormBotton }) => {
 
   // let setHandle = false;
 
-  const handleSubmit = (e) => {
-    // <Modal />;
-    e.preventDefault();
-  };
+  // const handleSubmit = (e) => {
+  //   // <Modal />;
+  //   e.preventDefault();
+  // };
 
   const handleUpdate = (contacId) => {
     fetch(`http://localhost:4000/contacts/${contacId}`)
@@ -28,7 +28,7 @@ const Contact = ({ contact, id, setFormBotton }) => {
         setPhone(contact.phone);
         console.log("🚀 ~ file: Contact.js ~ line 22 ~ .then ~ data", contact);
       });
-    return (setFormBotton.value = "Add");
+    return; //(setFormBotton.value = "Add Contact");
   };
 
   const handleModal = (setHandle) => {
@@ -41,8 +41,23 @@ const Contact = ({ contact, id, setFormBotton }) => {
     }
   };
 
+  // SEARCH FUNCTION: Getting input value
+  const [searchTerm, setSearchTerm] = useState("");
+  const handleSearch = (e) => {
+    setSearchTerm(e.target.value);
+    console.log(e.target.value);
+  };
+
+  let results = !searchTerm
+    ? contact
+    : contact.filter((contact) =>
+        contact.name.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+
   return (
     <div className="container">
+      <Header searchTerm={searchTerm} handleSearch={handleSearch} />
+
       <AddContact
         isUpdate={isUpdate}
         nameup={name}

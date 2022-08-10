@@ -23,10 +23,10 @@ function App() {
   // useEffect(() => {
   //   Fetchdb();
   // }, []);
-  setFormBotton.value = "Add";
+  setFormBotton.value = "Add Contact";
   return (
     <div>
-      <Header />
+      {/* <Header url="http://localhost:4000/contacts" /> */}
       {/* <AddContact /> */}
       <Contact contact={contacts} setFormBotton={setFormBotton} />
       {/* <DelContact /> */}

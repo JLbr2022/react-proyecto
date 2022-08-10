@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "./AddContact.css";
 import {
   Container,
   Row,
@@ -9,8 +10,6 @@ import {
   Input,
   Button,
 } from "reactstrap";
-
-// import Fetchdb from "../Fetchdb/Fetchdb";
 
 function AddContact({ onUpdate, isUpdate, nameup, phoneup, setFormBotton }) {
   // console.log(
@@ -43,18 +42,14 @@ function AddContact({ onUpdate, isUpdate, nameup, phoneup, setFormBotton }) {
     if (isUpdate) {
       setName(nameup);
       setPhone(parseInt(phoneup));
-      setFormBotton.value = "Save";
+      setFormBotton.value = "Save Contact";
     }
   }, [isUpdate, nameup, phoneup]);
 
   function handleNewReg(e) {
-    e.preventDefault();
     const newContact = { name, phone };
-    setFormBotton.value = "Add";
-
-    // e.target.name.value = " ";
-    // e.phone.value = 0;
-
+    e.preventDefault();
+    // setFormBotton.value = "Added Contact";
     setIsPending(true);
 
     fetch("http://localhost:4000/contacts", {
@@ -102,7 +97,12 @@ function AddContact({ onUpdate, isUpdate, nameup, phoneup, setFormBotton }) {
           </Col>
         </Row>{" "}
         {!isPending && (
-          <Button block type="submit" className="mt-2">
+          <Button
+            className="buttonForm mt-2"
+            color="success"
+            block
+            type="submit"
+          >
             {setFormBotton.value}
           </Button>
         )}
