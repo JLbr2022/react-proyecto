@@ -14,7 +14,7 @@ function Header({ handleSearch }) {
           <Input
             className="searchInput"
             type="search"
-            name="search"
+            name="seek"
             placeholder="search contact"
             onChange={handleSearch}
           />
