@@ -12,12 +12,12 @@ const Contact = ({ contact, id, setFormBotton }) => {
   const [contacId, setContactId] = useState();
   const [isUpdate, setIsUpdate] = useState(false);
 
-  // let setHandle = false;
+  let setHandle = false;
 
-  // const handleSubmit = (e) => {
-  //   // <Modal />;
-  //   e.preventDefault();
-  // };
+  const handleSubmit = (e) => {
+    <Modal />;
+    e.preventDefault();
+  };
 
   const handleUpdate = (contacId) => {
     fetch(`http://localhost:4000/contacts/${contacId}`)
@@ -34,7 +34,7 @@ const Contact = ({ contact, id, setFormBotton }) => {
     if (setHandle) {
       console.log("CALL Modal.js");
 
-      // <Modal />;
+      <Modal />;
     } else {
       console.log("MODAL TYPE FALSE for MODIFY USER");
     }
