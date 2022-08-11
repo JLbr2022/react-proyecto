@@ -6,7 +6,7 @@ import AddContact from "../AddContact/AddContact";
 import Modal from "../Modal/Modal"; // currently in construction
 import Header from "../Header/Header";
 
-const Contact = ({ contact, id, setFormBotton }) => {
+const Contact = ({ contact, id, setFormBotton, setDoRefresh }) => {
   const [name, setName] = useState();
   const [phone, setPhone] = useState();
   const [contacId, setContactId] = useState();
@@ -64,6 +64,7 @@ const Contact = ({ contact, id, setFormBotton }) => {
         nameup={name}
         phoneup={phone}
         setFormBotton={setFormBotton}
+        setDoRefresh={setDoRefresh}
       />
 
       <Table className="mt-4" size="md" bordered hover responsive>
@@ -84,7 +85,9 @@ const Contact = ({ contact, id, setFormBotton }) => {
               <td>
                 <ButtonGroup>
                   <Button onClick={() => handleUpdate(results.id)}>MOD</Button>
-                  <Button onClick={() => DelContact(results.id)}>DEL</Button>
+                  <Button onClick={() => DelContact(results.id, setDoRefresh)}>
+                    DEL
+                  </Button>
                   <Button
                     className="openModalBotton"
                     onClick={handleModal(true)}

@@ -10,23 +10,28 @@ function App() {
   const url = "http://localhost:4000/contacts/";
   const [contacts, setContacts] = useState([]);
   const [formBotton, setFormBotton] = useState("");
+  const [doRefresh, setDoRefresh] = useState(false);
 
   setFormBotton.value = "Add Contact";
 
-  // const fetchContacts = async () => {
-  //   fetch(url)
-  //     .then((response) => response.json())
-  //     .then((data) => setContacts(data));
-  // };
+  const fetchContacts = () => {
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => setContacts(data));
+  };
 
-  // useEffect(() => {
-  //   fetchContacts();
-  // }, []);
+  useEffect(() => {
+    fetchContacts();
+  }, [setDoRefresh]);
 
   return (
     <div>
-      {/* <DoFetch url={url} /> */}
-      <Contact contact={contacts} setFormBotton={setFormBotton} />
+      {/* <DoFetch /> */}
+      <Contact
+        contact={contacts}
+        setFormBotton={setFormBotton}
+        setDoRefresh={setDoRefresh}
+      />
     </div>
   );
 }

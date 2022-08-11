@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./AddContact.css";
+// import DoFetch from "../DoFetch/DoFetch";
 import {
   Container,
   Row,
@@ -11,19 +12,22 @@ import {
   Button,
 } from "reactstrap";
 
-function AddContact({ onUpdate, isUpdate, nameup, phoneup, setFormBotton }) {
-  // console.log(
-  //   "🚀 ~ file: AddContact.js ~ line 17 ~ AddContact ~ onUpdate",
-  //   onUpdate
-  // );
-
+function AddContact({
+  onUpdate,
+  isUpdate,
+  nameup,
+  phoneup,
+  setFormBotton,
+  setDoRefresh,
+}) {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [isPending, setIsPending] = useState(false);
+
   // const [formBottom, setFormBotton] = useState("Add"); // true = add contact, false = update contact
 
-  const handleUpdate = async (contactId) => {
-    // e.preventDefault();
+  const handleUpdate = async (e) => {
+    e.preventDefault();
     setIsPending(true);
 
     const response = await fetch(`http://localhost:4000/contacts/${isUpdate}`, {
@@ -36,6 +40,10 @@ function AddContact({ onUpdate, isUpdate, nameup, phoneup, setFormBotton }) {
         "Content-Type": "application/json",
       },
     });
+    if (response.ok) {
+      setDoRefresh(true);
+    }
+    // return <DoFetch />;
   };
 
   useEffect(() => {
@@ -49,7 +57,6 @@ function AddContact({ onUpdate, isUpdate, nameup, phoneup, setFormBotton }) {
   function handleNewReg(e) {
     const newContact = { name, phone };
     e.preventDefault();
-    // setFormBotton.value = "Added Contact";
     setIsPending(true);
 
     fetch("http://localhost:4000/contacts", {
@@ -59,6 +66,7 @@ function AddContact({ onUpdate, isUpdate, nameup, phoneup, setFormBotton }) {
     }).then(() => {
       console.warn("CONTACT ADDED ", newContact);
       setIsPending(false);
+      setDoRefresh(true); // refresh the list of contacts
     });
   }
   return (
