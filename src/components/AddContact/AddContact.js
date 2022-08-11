@@ -24,8 +24,6 @@ function AddContact({
   const [phone, setPhone] = useState("");
   const [isPending, setIsPending] = useState(false);
 
-  // const [formBottom, setFormBotton] = useState("Add"); // true = add contact, false = update contact
-
   const handleUpdate = async (e) => {
     e.preventDefault();
     setIsPending(true);
@@ -41,9 +39,9 @@ function AddContact({
       },
     });
     if (response.ok) {
+      setIsPending(false);
       setDoRefresh(true);
     }
-    // return <DoFetch />;
   };
 
   useEffect(() => {
@@ -55,8 +53,8 @@ function AddContact({
   }, [isUpdate, nameup, phoneup]);
 
   function handleNewReg(e) {
-    const newContact = { name, phone };
     e.preventDefault();
+    const newContact = { name, phone };
     setIsPending(true);
 
     fetch("http://localhost:4000/contacts", {
