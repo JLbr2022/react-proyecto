@@ -6,7 +6,13 @@ import AddContact from "../AddContact/AddContact";
 import Modal from "../Modal/Modal"; // currently in construction
 import Header from "../Header/Header";
 
-const Contact = ({ contact, id, setFormBotton, setDoRefresh }) => {
+const Contact = ({
+  contact,
+  id,
+  setFormBotton,
+  setDoRefresh,
+  fetchContacts,
+}) => {
   const [name, setName] = useState();
   const [phone, setPhone] = useState();
   const [contacId, setContactId] = useState();
@@ -19,6 +25,7 @@ const Contact = ({ contact, id, setFormBotton, setDoRefresh }) => {
     e.preventDefault();
   };
 
+  // FUNCTION MODIFY CONTACT
   const handleUpdate = (contacId) => {
     fetch(`http://localhost:4000/contacts/${contacId}`)
       .then((response) => response.json())
@@ -30,6 +37,7 @@ const Contact = ({ contact, id, setFormBotton, setDoRefresh }) => {
     return;
   };
 
+  // MODAL
   const handleModal = (setHandle) => {
     if (setHandle) {
       console.log("CALL Modal.js");
@@ -65,6 +73,7 @@ const Contact = ({ contact, id, setFormBotton, setDoRefresh }) => {
         phoneup={phone}
         setFormBotton={setFormBotton}
         setDoRefresh={setDoRefresh}
+        fetchContacts={fetchContacts}
       />
 
       <Table className="mt-4" size="md" bordered hover responsive>
@@ -84,8 +93,12 @@ const Contact = ({ contact, id, setFormBotton, setDoRefresh }) => {
               <td>{results.phone}</td>
               <td>
                 <ButtonGroup>
-                  <Button onClick={() => handleUpdate(results.id)}>MOD</Button>
-                  <Button onClick={() => DelContact(results.id, setDoRefresh)}>
+                  <Button
+                    onClick={() => handleUpdate(results.id, fetchContacts)}
+                  >
+                    MOD
+                  </Button>
+                  <Button onClick={() => DelContact(results.id, fetchContacts)}>
                     DEL
                   </Button>
                   <Button

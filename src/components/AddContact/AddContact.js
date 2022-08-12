@@ -12,6 +12,7 @@ import {
   Button,
 } from "reactstrap";
 
+// FUNCTION ADD CONTACT
 function AddContact({
   onUpdate,
   isUpdate,
@@ -19,11 +20,13 @@ function AddContact({
   phoneup,
   setFormBotton,
   setDoRefresh,
+  fetchContacts,
 }) {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [isPending, setIsPending] = useState(false);
 
+  // FUNCTION MODIFY CONTACT
   const handleUpdate = async (e) => {
     e.preventDefault();
     setIsPending(true);
@@ -38,9 +41,12 @@ function AddContact({
         "Content-Type": "application/json",
       },
     });
+
     if (response.ok) {
       setIsPending(false);
-      setDoRefresh(true);
+      setName("");
+      setPhone("");
+      fetchContacts();
     }
   };
 
@@ -48,25 +54,30 @@ function AddContact({
     if (isUpdate) {
       setName(nameup);
       setPhone(parseInt(phoneup));
-      setFormBotton.value = "Save Contact";
+      setFormBotton.value = "Update Contact";
     }
   }, [isUpdate, nameup, phoneup]);
 
-  function handleNewReg(e) {
+  // FUNCTION ADD CONTACT
+  const handleNewReg = async (e) => {
     e.preventDefault();
+    e.target.reset();
     const newContact = { name, phone };
     setIsPending(true);
 
-    fetch("http://localhost:4000/contacts", {
+    const response = await fetch("http://localhost:4000/contacts", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newContact),
     }).then(() => {
       console.warn("CONTACT ADDED ", newContact);
+      setName("");
+      setPhone("");
       setIsPending(false);
-      setDoRefresh(true); // refresh the list of contacts
+      // setDoRefresh(true); // refresh the contacts list = true
+      fetchContacts();
     });
-  }
+  };
   return (
     <Container>
       <Form

@@ -22,7 +22,14 @@ function App() {
 
   useEffect(() => {
     fetchContacts();
-  }, [setDoRefresh]);
+  }, []);
+
+  // useEffect(() => {
+  //   console.log("useEffect");
+  //   fetch(url)
+  //     .then((response) => response.json())
+  //     .then((data) => setContacts(data));
+  //   }, [setContacts]);
 
   return (
     <div>
@@ -31,6 +38,7 @@ function App() {
         contact={contacts}
         setFormBotton={setFormBotton}
         setDoRefresh={setDoRefresh}
+        fetchContacts={fetchContacts}
       />
     </div>
   );
