@@ -1,7 +1,4 @@
-import React, { useEffect, useState } from "react";
-import DoFetch from "../DoFetch/DoFetch";
-
-// import Contact from "../Contacts/Contact";
+import React from "react";
 
 function DelContact(id, fetchContacts) {
   fetch(`http://localhost:4000/contacts/${id}`, {

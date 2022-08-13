@@ -1,52 +1,23 @@
-// import React, { useEffect, useReducer, useState } from "react";
 import React, { useState } from "react";
 import { Table, Button, ButtonGroup, From } from "reactstrap";
 import DelContact from "../DelContact/DelContact";
 import AddContact from "../AddContact/AddContact";
-import Modal from "../Modal/Modal"; // currently in construction
+import ModContact from "../ModContact/ModContact";
 import Header from "../Header/Header";
 
 const Contact = ({
   contact,
   id,
   setFormBotton,
-  setDoRefresh,
   fetchContacts,
+  handleUpdate,
 }) => {
   const [name, setName] = useState();
   const [phone, setPhone] = useState();
   const [contacId, setContactId] = useState();
   const [isUpdate, setIsUpdate] = useState(false);
 
-  let setHandle = false;
-
-  const handleSubmit = (e) => {
-    <Modal />;
-    e.preventDefault();
-  };
-
-  // FUNCTION MODIFY CONTACT
-  const handleUpdate = (contacId) => {
-    fetch(`http://localhost:4000/contacts/${contacId}`)
-      .then((response) => response.json())
-      .then((contact) => {
-        setIsUpdate(contacId);
-        setName(contact.name);
-        setPhone(contact.phone);
-      });
-    return;
-  };
-
-  // MODAL
-  const handleModal = (setHandle) => {
-    if (setHandle) {
-      console.log("CALL Modal.js");
-
-      <Modal />;
-    } else {
-      console.log("MODAL TYPE FALSE for MODIFY USER");
-    }
-  };
+  // let setHandle = false;
 
   // ============ SEARCH FUNCTION: filter list  ===========
   const [searchTerm, setSearchTerm] = useState("");
@@ -61,7 +32,6 @@ const Contact = ({
     : contact.filter((contact) =>
         contact.name.toLowerCase().includes(searchTerm.toLowerCase())
       );
-  console.log(results);
 
   return (
     <div className="container">
@@ -72,11 +42,10 @@ const Contact = ({
         nameup={name}
         phoneup={phone}
         setFormBotton={setFormBotton}
-        setDoRefresh={setDoRefresh}
         fetchContacts={fetchContacts}
       />
 
-      <Table className="mt-4" size="md" bordered hover responsive>
+      <Table className="mt-4" size="md" hover responsive striped>
         <thead>
           <tr>
             <th>ID</th>
@@ -94,18 +63,20 @@ const Contact = ({
               <td>
                 <ButtonGroup>
                   <Button
-                    onClick={() => handleUpdate(results.id, fetchContacts)}
+                    onClick={() =>
+                      ModContact(
+                        results.id,
+                        setIsUpdate,
+                        setName,
+                        setPhone,
+                        fetchContacts
+                      )
+                    }
                   >
-                    MOD
+                    Modify
                   </Button>
                   <Button onClick={() => DelContact(results.id, fetchContacts)}>
-                    DEL
-                  </Button>
-                  <Button
-                    className="openModalBotton"
-                    onClick={handleModal(true)}
-                  >
-                    lauch Modal
+                    Delete
                   </Button>
                 </ButtonGroup>
               </td>

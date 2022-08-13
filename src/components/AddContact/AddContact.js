@@ -19,7 +19,6 @@ function AddContact({
   nameup,
   phoneup,
   setFormBotton,
-  setDoRefresh,
   fetchContacts,
 }) {
   const [name, setName] = useState("");
