@@ -27,6 +27,9 @@
 
 #### **-- The project in images**
 
+**LANDING PAGE**
+![enter image description here](https://github.com/JLbr2022/react-proyecto/blob/master/src/images/LandingPage.jpg?raw=true)
+
 **ADD A CONTACT - Part 1**
 ![enter image description here](https://github.com/JLbr2022/react-proyecto/blob/HEADER-responsive/src/images/AddContactP1.jpg?raw=true)
 
