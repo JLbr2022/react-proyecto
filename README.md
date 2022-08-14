@@ -1,4 +1,4 @@
-## React JS: Proyecto Final
+## React JS: Projeto Final
 
 <p align="center">
     <img width="10%" src="https://github.com/JLbr2022/react-ejercicio-aula-05/blob/master/src/components/images/logo192.png?raw=true"> 
@@ -6,18 +6,20 @@
 
 ### ● AGENDA TELEFONICA
 
-- Agregar contacto,
-- Modificar contacto,
-- Eliminar contacto,
-- Buscar contacto.
-- Utilizar API JSON-Server: https://github.com/tyicode/json-server
-  **-- Instalación JSON-Server:**
+This project consist in a Contact Book which allow:
 
-`npm install -g json-server`
+- Add a contact,
+- Modify a contact,
+- Delete a contact,
+- Search a contact by name.
 
-**-- Creación de la base de datos:**
+Components:
 
-`json-server dataBaseName.json`
+- Header: Header component
+- Contact: which contain the contact list table and the search routines
+- AddContact: contanin a add form contact and do part of Modify a contact routine
+- ModContact: contain the 2n part of Modify a contact routine
+- DelContact: to delete a contact
 
-**-- Base de Dats --**
-DataBase.json
+**-- Base de Datos --**
+`db.json`
