@@ -73,7 +73,7 @@ function AddContact({
         onSubmit={!isUpdate ? handleNewReg : handleUpdate}
       >
         <Row>
-          <Col>
+          <Col xs="12" md="6">
             <FormGroup floating>
               <Input
                 title="Enter the user name"
@@ -87,7 +87,7 @@ function AddContact({
               <Label for="exampleName">Name</Label>
             </FormGroup>
           </Col>{" "}
-          <Col>
+          <Col xs="12" md="6" xl="6">
             <FormGroup floating>
               <Input
                 title="Enter the user phone"
