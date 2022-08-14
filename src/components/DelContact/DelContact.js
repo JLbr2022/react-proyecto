@@ -5,7 +5,6 @@ function DelContact(id, fetchContacts) {
     method: "DELETE",
   }).then((result) => {
     result.json().then((resp) => {
-      console.warn("DELETED ", resp);
       fetchContacts();
     });
   });

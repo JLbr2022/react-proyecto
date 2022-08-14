@@ -24,7 +24,6 @@ const Contact = ({
 
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
-    console.log(e.target.value);
   };
 
   let results = !searchTerm
@@ -34,7 +33,7 @@ const Contact = ({
       );
 
   return (
-    <div className="container">
+    <div>
       <Header searchTerm={searchTerm} handleSearch={handleSearch} />
 
       <AddContact

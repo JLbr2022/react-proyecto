@@ -21,7 +21,7 @@ function App() {
   }, []);
 
   return (
-    <div>
+    <div className="container">
       <Contact
         contact={contacts}
         setFormBotton={setFormBotton}

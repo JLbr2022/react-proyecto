@@ -1,16 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./AddContact.css";
-// import DoFetch from "../DoFetch/DoFetch";
-import {
-  Container,
-  Row,
-  Col,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  Button,
-} from "reactstrap";
+import { Row, Col, Form, FormGroup, Label, Input, Button } from "reactstrap";
 
 // FUNCTION ADD CONTACT
 function AddContact({
@@ -69,7 +59,6 @@ function AddContact({
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newContact),
     }).then(() => {
-      console.warn("CONTACT ADDED ", newContact);
       setName("");
       setPhone("");
       setIsPending(false);
@@ -77,7 +66,7 @@ function AddContact({
     });
   };
   return (
-    <Container>
+    <>
       <Form
         className="mt-4"
         inline
@@ -129,7 +118,7 @@ function AddContact({
           </Button>
         )}
       </Form>
-    </Container>
+    </>
   );
 }
 

@@ -7,7 +7,6 @@ function Fetchdb() {
     .then((data) => setContacts(data));
 }
 
-// useEffect(() => {
 Fetchdb();
-// }, []);
+
 export default Fetchdb;

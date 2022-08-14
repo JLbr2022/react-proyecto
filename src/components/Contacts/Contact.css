@@ -1,3 +1,9 @@
+.tableHead {
+  color: rgb(36, 36, 36);
+  font-size: 1.2em;
+  /* background-color: #9c9c9c */
+}
+
 .tableHead .thActions {
   text-align: center;
 }
