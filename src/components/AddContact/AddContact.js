@@ -87,6 +87,7 @@ function AddContact({
           <Col>
             <FormGroup floating>
               <Input
+                title="Enter the user name"
                 id="contactEmail"
                 name="name"
                 placeholder="contact name"
@@ -100,6 +101,7 @@ function AddContact({
           <Col>
             <FormGroup floating>
               <Input
+                title="Enter the user phone"
                 id="contactPhone"
                 name="phone"
                 value={phone}

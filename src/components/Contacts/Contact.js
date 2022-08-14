@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Table, Button, ButtonGroup, From } from "reactstrap";
+import { FaTrashAlt, FaUserEdit } from "react-icons/fa";
 import DelContact from "../DelContact/DelContact";
 import AddContact from "../AddContact/AddContact";
 import ModContact from "../ModContact/ModContact";
@@ -62,6 +63,8 @@ const Contact = ({
               <td>
                 <ButtonGroup className="centerColumn">
                   <Button
+                    color="warning"
+                    title="Edit User"
                     onClick={() =>
                       ModContact(
                         results.id,
@@ -72,10 +75,14 @@ const Contact = ({
                       )
                     }
                   >
-                    Modify
+                    <FaUserEdit />
                   </Button>
-                  <Button onClick={() => DelContact(results.id, fetchContacts)}>
-                    Delete
+                  <Button
+                    title="Delete User"
+                    color="danger"
+                    onClick={() => DelContact(results.id, fetchContacts)}
+                  >
+                    <FaTrashAlt className="me-2" />
                   </Button>
                 </ButtonGroup>
               </td>
