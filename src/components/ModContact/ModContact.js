@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import App from "../../App";
 
-// FUNCTION MODIFY CONTACT
+// FUNCTION MODIFY CONTACT Part 1: Loading reg to update contact
 const ModContact = (
   contacId,
   setIsUpdate,
@@ -10,7 +10,6 @@ const ModContact = (
   setPhone,
   fetchContacts
 ) => {
-  console.log("🚀 ~ file: ModContact.js ~ contacId", contacId);
   fetch(`http://localhost:4000/contacts/${contacId}`)
     .then((response) => response.json())
     .then((contact) => {
@@ -18,8 +17,6 @@ const ModContact = (
       setName(contact.name);
       setPhone(contact.phone);
     });
-  return;
-  // };
 };
 
 export default ModContact;

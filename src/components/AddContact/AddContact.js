@@ -25,7 +25,7 @@ function AddContact({
   const [phone, setPhone] = useState("");
   const [isPending, setIsPending] = useState(false);
 
-  // FUNCTION MODIFY CONTACT
+  // FUNCTION MODIFY CONTACT Part 2: Do Update and refresh list
   const handleUpdate = async (e) => {
     e.preventDefault();
     setIsPending(true);
@@ -45,7 +45,7 @@ function AddContact({
       setIsPending(false);
       setName("");
       setPhone("");
-      fetchContacts();
+      fetchContacts(); // Refresh contacts list after update
     }
   };
 
@@ -73,8 +73,7 @@ function AddContact({
       setName("");
       setPhone("");
       setIsPending(false);
-      // setDoRefresh(true); // refresh the contacts list = true
-      fetchContacts();
+      fetchContacts(); // Refresh contacts list after adding a new contact
     });
   };
   return (

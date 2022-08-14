@@ -4,6 +4,7 @@ import DelContact from "../DelContact/DelContact";
 import AddContact from "../AddContact/AddContact";
 import ModContact from "../ModContact/ModContact";
 import Header from "../Header/Header";
+import "./Contact.css";
 
 const Contact = ({
   contact,
@@ -17,8 +18,6 @@ const Contact = ({
   const [contacId, setContactId] = useState();
   const [isUpdate, setIsUpdate] = useState(false);
 
-  // let setHandle = false;
-
   // ============ SEARCH FUNCTION: filter list  ===========
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -27,7 +26,7 @@ const Contact = ({
     console.log(e.target.value);
   };
 
-  let results = !searchTerm // modifiqué contact por results
+  let results = !searchTerm
     ? contact
     : contact.filter((contact) =>
         contact.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -46,12 +45,12 @@ const Contact = ({
       />
 
       <Table className="mt-4" size="md" hover responsive striped>
-        <thead>
+        <thead className="tableHead">
           <tr>
             <th>ID</th>
             <th>Name</th>
             <th>Phone</th>
-            <th>Actions</th>
+            <th className="thActions">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -61,7 +60,7 @@ const Contact = ({
               <td>{results.name}</td>
               <td>{results.phone}</td>
               <td>
-                <ButtonGroup>
+                <ButtonGroup className="centerColumn">
                   <Button
                     onClick={() =>
                       ModContact(

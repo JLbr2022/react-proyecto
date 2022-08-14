@@ -1,0 +1,9 @@
+.tableHead .thActions {
+  text-align: center;
+}
+
+.centerColumn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
